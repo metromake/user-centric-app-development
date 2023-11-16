@@ -1,14 +1,20 @@
 import express from 'express';
-import router from './router.js';
+import mediaRouter from './routers/mediaRouter.mjs';
+import userRouter from './routers/userRouter.mjs';
+import commentRouter from './routers/commentRouter.mjs';
 
 const app = express();
 
-app.use(express.json());
-app.use('/media', express.static('src/media'));
 app.set('view engine', 'pug');
 app.set('views', 'src/views');
 
-router(app);
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use('/uploads', express.static('/uploads'));
+
+app.use('/api/media', mediaRouter);
+app.use('/api/user', userRouter);
+app.use('/api/comments', commentRouter);
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');

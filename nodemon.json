@@ -1,6 +1,6 @@
 {
   "watch": ["src"],
-  "ext": ".js",
+  "ext": ".js,.mjs",
   "ignore": ["node_modules"],
   "exec": "node ."
 }
