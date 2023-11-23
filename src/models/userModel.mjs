@@ -12,9 +12,10 @@ const listAllUsers = async () => {
 
 const getUserById = async id => {
   try {
-    const [rows] = await promisePool.query('SELECT * FROM Users WHERE id = ?', [
-      id,
-    ]);
+    const [rows] = await promisePool.query(
+      'SELECT * FROM Users WHERE user_id = ?',
+      [id]
+    );
     return rows[0];
   } catch (error) {
     console.error(error);
@@ -44,15 +45,8 @@ const addUser = async user => {
 const updateUser = async (id, user) => {
   try {
     const [rows] = await promisePool.query(
-      'UPDATE Users SET username = ?, password = ?, email = ?, user_level_id = ?, created_at = ? WHERE id = ?',
-      [
-        user.username,
-        user.password,
-        user.email,
-        user.user_level_id,
-        user.created_at,
-        id,
-      ]
+      'UPDATE Users SET username = ?, password = ?, email = ?, user_level_id = ?, WHERE user_id = ?',
+      [user.username, user.password, user.email, user.user_level_id, id]
     );
     return rows.affectedRows === 1;
   } catch (error) {
