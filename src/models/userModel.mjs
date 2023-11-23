@@ -74,4 +74,17 @@ const deleteUser = async id => {
   }
 };
 
-export {listAllUsers, getUserById, addUser, updateUser, deleteUser};
+const login = async (username, password) => {
+  try {
+    const [rows] = await promisePool.query(
+      'SELECT * FROM Users WHERE username = ? AND password = ?',
+      [username, password]
+    );
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export {listAllUsers, getUserById, addUser, updateUser, deleteUser, login};

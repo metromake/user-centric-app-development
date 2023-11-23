@@ -33,7 +33,7 @@ Content-Type: image/jpeg
 
 
 ###
-PUT http://localhost:3000/api/media/9590
+PUT http://localhost:3000/api/media/1
 Content-Type: application/json
 
 {
@@ -76,3 +76,16 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3000/api/user/305
 Content-Type: application/json
+
+### Post login
+POST http://localhost:3000/api/auth/login
+content-type: application/json
+
+{
+  "username": "newuser",
+  "password": "newpassword"
+}
+
+### Get my user info
+GET http://localhost:3000/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5ld3VzZXIiLCJwYXNzd29yZCI6Im5ld3Bhc3N3b3JkIiwiZW1haWwiOiIiLCJ1c2VyX2xldmVsX2lkIjoxLCJjcmVhdGVkX2F0IjoiMjAyMy0xMS0xNVQwNjozMToyMi4wMDBaIiwiaWF0IjoxNzAwNjQxMTg5LCJleHAiOjE3MDA3Mjc1ODl9.lnArhrna0TldptnrthMqqkRANjXJTiEuvH1HhRh09Qs

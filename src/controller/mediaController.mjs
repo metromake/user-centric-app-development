@@ -34,7 +34,7 @@ const postMedia = async (req, res) => {
 };
 
 const putMedia = async (req, res) => {
-  const id = req.params.id;
+  const id = +req.params.id;
   const media = req.body;
   if (media) {
     const updatedMedia = await updateMedia(id, media);

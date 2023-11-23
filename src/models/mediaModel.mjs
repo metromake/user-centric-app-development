@@ -47,18 +47,8 @@ const addMedia = async media => {
 const updateMedia = async (id, media) => {
   try {
     const [rows] = await promisePool.query(
-      'UPDATE MediaItems SET filename = ?, mimetype = ?, filesize = ?, title = ?, description = ?, user_id = ?, media_type = ?, created_at = ? WHERE id = ?',
-      [
-        media.filename,
-        media.mimetype,
-        media.filesize,
-        media.title,
-        media.description,
-        media.user_id,
-        media.media_type,
-        media.created_at,
-        id,
-      ]
+      'UPDATE MediaItems SET title = ?, description = ? WHERE media_id = ?',
+      [media.title, media.description, id]
     );
     return rows.affectedRows === 1 ? rows : null;
   } catch (error) {
@@ -70,7 +60,7 @@ const updateMedia = async (id, media) => {
 const deleteMedia = async id => {
   try {
     const [rows] = await promisePool.query(
-      'DELETE FROM MediaItems WHERE id = ?',
+      'DELETE FROM MediaItems WHERE media_id = ?',
       [id]
     );
     return rows.affectedRows === 1 ? rows : null;

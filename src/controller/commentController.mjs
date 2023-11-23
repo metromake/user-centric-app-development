@@ -21,6 +21,7 @@ const postComment = async (req, res) => {
   const comment = req.body;
   if (!comment) res.status(400).json({message: 'Comment data is required'});
   else {
+    comment.user_id = req.user.user_id;
     await addComment(comment);
     res.status(201).json(comment);
   }
@@ -31,7 +32,7 @@ const putComment = async (req, res) => {
   const comment = req.body;
   if (!comment) res.status(400).json({message: 'Comment data is required'});
   else {
-    const updatedComment = await updateComment(id, comment);
+    const updatedComment = await updateComment(id, updatedComment);
     if (updatedComment) res.status(200).json(updatedComment);
     else res.status(404).json({message: `Comment with id ${id} not found`});
   }

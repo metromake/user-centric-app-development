@@ -44,14 +44,8 @@ const addComment = async comment => {
 const updateComment = async (id, comment) => {
   try {
     const [rows] = await promisePool.query(
-      'UPDATE Comments SET comment_text = ?, user_id = ?, media_id = ?, created_at = ? WHERE id = ?',
-      [
-        comment.comment_text,
-        comment.user_id,
-        comment.media_id,
-        comment.created_at,
-        id,
-      ]
+      'UPDATE Comments SET comment_text = ? WHERE id = ?',
+      [comment.comment_text, id]
     );
     return rows.affectedRows === 1;
   } catch (error) {
