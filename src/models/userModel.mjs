@@ -1,4 +1,5 @@
 import promisePool from '../utils/database.mjs';
+import bcrypt from 'bcryptjs';
 
 const listAllUsers = async () => {
   try {
@@ -24,12 +25,14 @@ const getUserById = async id => {
 };
 
 const addUser = async user => {
+  const salt = bcrypt.genSaltSync(10);
   try {
+    const hashedPassword = bcrypt.hashSync(user.password, salt);
     const [rows] = await promisePool.query(
       'INSERT INTO Users (username, password, email, user_level_id, created_at) VALUES (?, ?, ?, ?, ?)',
       [
         user.username,
-        user.password,
+        hashedPassword,
         user.email,
         1,
         new Date().toISOString().slice(0, 19).replace('T', ' '),
@@ -68,11 +71,11 @@ const deleteUser = async id => {
   }
 };
 
-const login = async (username, password) => {
+const login = async username => {
   try {
     const [rows] = await promisePool.query(
-      'SELECT * FROM Users WHERE username = ? AND password = ?',
-      [username, password]
+      'SELECT * FROM Users WHERE username = ?',
+      [username]
     );
     return rows[0];
   } catch (error) {

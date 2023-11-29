@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import {login} from '../models/userModel.mjs';
 import {validationResult} from 'express-validator';
+import bcrypt from 'bcryptjs';
 
 const postLogin = async (req, res, next) => {
   const errors = validationResult(req);
@@ -9,8 +10,10 @@ const postLogin = async (req, res, next) => {
     error.status = 400;
     return next(error);
   }
-  const user = await login(req.body.username, req.body.password);
-  if (user) {
+  const user = await login(req.body.username);
+  const match = await bcrypt.compare(req.body.password, user?.password);
+  if (user && match) {
+    delete user.password;
     const token = jwt.sign(user, process.env.JWT_SECRET, {expiresIn: '24h'});
     res.status(200).json({...user, token});
   } else {

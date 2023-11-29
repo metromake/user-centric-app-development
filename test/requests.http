@@ -63,34 +63,34 @@ POST http://localhost:3000/api/user
 Content-Type: application/json
 
 {
-  "username": "newuser",
-  "password": "newpassword",
-  "email": ""
+  "username": "testuser",
+  "password": "testpassword",
+  "email": "newuser@user.test"
 }
 
 ###
-PUT http://localhost:3000/api/user/305
+PUT http://localhost:3000/api/user/3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5ld3VzZXIiLCJwYXNzd29yZCI6Im5ld3Bhc3N3b3JkIiwiZW1haWwiOiIiLCJ1c2VyX2xldmVsX2lkIjoxLCJjcmVhdGVkX2F0IjoiMjAyMy0xMS0xNVQwNjozMToyMi4wMDBaIiwiaWF0IjoxNzAwNjQxMTg5LCJleHAiOjE3MDA3Mjc1ODl9.lnArhrna0TldptnrthMqqkRANjXJTiEuvH1HhRh09Qs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZW1haWwiOiJuZXd1c2VyQHVzZXIudGVzdCIsInVzZXJfbGV2ZWxfaWQiOjEsImNyZWF0ZWRfYXQiOiIyMDIzLTExLTI5VDA1OjM3OjQyLjAwMFoiLCJpYXQiOjE3MDEyNDM0NzQsImV4cCI6MTcwMTMyOTg3NH0.MJKWIUGJRr0q01BnTtik6qHifkaijqjTcFob388YoPY
 
 {
   "username": "newuser",
   "password": "newpassword",
-  "email": ""
+  "email": "newuser@user.test"
 }
 
 ###
-DELETE http://localhost:3000/api/user/305
+DELETE http://localhost:3000/api/user/3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im5ld3VzZXIiLCJwYXNzd29yZCI6Im5ld3Bhc3N3b3JkIiwiZW1haWwiOiIiLCJ1c2VyX2xldmVsX2lkIjoxLCJjcmVhdGVkX2F0IjoiMjAyMy0xMS0xNVQwNjozMToyMi4wMDBaIiwiaWF0IjoxNzAwNjQxMTg5LCJleHAiOjE3MDA3Mjc1ODl9.lnArhrna0TldptnrthMqqkRANjXJTiEuvH1HhRh09Qs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZW1haWwiOiJuZXd1c2VyQHVzZXIudGVzdCIsInVzZXJfbGV2ZWxfaWQiOjEsImNyZWF0ZWRfYXQiOiIyMDIzLTExLTI5VDA1OjM3OjQyLjAwMFoiLCJpYXQiOjE3MDEyNDM0NzQsImV4cCI6MTcwMTMyOTg3NH0.MJKWIUGJRr0q01BnTtik6qHifkaijqjTcFob388YoPY
 
 ### Post login
 POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-  "username": "newuser",
-  "password": "newpassword"
+  "username": "testuser",
+  "password": "testpassword"
 }
 
 ### Get my user info

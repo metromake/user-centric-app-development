@@ -36,6 +36,12 @@ const postUser = async (req, res, next) => {
     return next(error);
   }
   const user = req.body;
+  const users = await listAllUsers();
+  if (users.find(u => u.username === user.username)) {
+    const error = new Error('Username already exists');
+    error.status = 409;
+    return next(error);
+  }
   await addUser(user);
   res.status(201).json(user);
 };
