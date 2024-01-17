@@ -14,6 +14,7 @@ app.set('views', 'src/views');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/uploads', express.static('/uploads'));
+app.use('/docs', express.static('/docs'));
 
 app.use('/', router);
 app.use('/api/media', mediaRouter);
